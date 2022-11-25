@@ -19,10 +19,15 @@ def search_file(cur_path, file_name):
     return result
 
 
-file = "securiti.txt"
+file = "test2.py"
 
-path_name = "F:\PycharmProjects"
+path_name = "R:\homeFinal"
 
 final = search_file(path_name, file)
 
-print("путь до файла {}".format({final}))
+if final:
+    text = open('history_search_two.txt', "a", encoding='utf-8')
+    print("путь до файла {}".format({final}))
+    text.write("\n" + final)
+else:
+    print("файл не найден")

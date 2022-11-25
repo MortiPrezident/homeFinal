@@ -1,3 +1,5 @@
-list_name = [3, 5, 5]
+file = open("numbers.txt", "r", encoding="utf-8")
 
-print(len(list_name))
+file.read()
+
+file.close()

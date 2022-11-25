@@ -1,0 +1,228 @@
+import os
+
+
+
+def all_in_one(abs_path):
+
+
+    file = open("scripts.txt", "w", encoding="utf-8")
+    for i_elem in os.listdir(abs_path):
+        path = os.path.join(abs_path, i_elem)
+        if path.endswith(".py"):
+            file_two = open(path, "r", encoding="utf-8")
+            file.write(file_two.read() + "\n" + "*" * 40 + "\n")
+            file_two.close()
+    else:
+        file.close()
+
+
+absolute_path = "R:\homeFinal\pythonProject\module22"
+all_in_one(absolute_path)
+****************************************
+import os
+
+path_name = input("Путь: ")
+
+
+def icon(abs_path):
+
+    if os.path.exists(abs_path):
+
+        if os.path.isdir(abs_path):
+            print("Это папка")
+
+        if os.path.islink(abs_path):
+
+            print("Это ссылка")
+        if os.path.isfile(abs_path):
+            print("Это файл")
+            x = os.path.getsize(abs_path)
+            print("Размер файла: ", x)
+
+
+    else:
+        print("Указанного пути не существует")
+
+icon(path_name)
+****************************************
+# This is a sample Python script.
+
+# Press Shift+F10 to execute it or replace it with your code.
+# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+
+
+def print_hi(name):
+    # Use a breakpoint in the code line below to debug your script.
+    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+
+
+# Press the green button in the gutter to run the script.
+if __name__ == '__main__':
+    print_hi('PyCharm')
+
+# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+****************************************
+file = open('R:\\task\group_1.txt', 'r', encoding='utf-8')
+
+summa = 0
+
+for i_line in file:
+    info = i_line.split()
+    summa += int(info[2])
+
+file = open('R:\\task\group_1.txt', 'r', encoding='utf-8')
+
+diff = 0
+
+for i_line in file:
+    info = i_line.split()
+    diff -= int(info[2])
+
+file_2 = open('R:\\task\Additional_info\group_2.txt', 'r', encoding='utf-8')
+
+compose = 1
+
+for i_line in file_2:
+    info = i_line.split()
+    compose *= int(info[2])
+
+print(summa)
+
+print(diff)
+
+print(compose)
+
+****************************************
+import os
+
+
+def search_file(cur_path, file_name, list_file=None):
+
+    if list_file is None:
+        list_file = list()
+
+    for i_elem in os.listdir(cur_path):
+        path = os.path.join(cur_path, i_elem)
+        if i_elem == file_name:
+            list_file.append(path)
+        if os.path.isdir(path):
+            search_file(path, file_name, list_file)
+    return list_file
+
+
+file = "securiti.txt"
+
+path_name = "R:\homeFinal"
+
+final = search_file(path_name, file)
+
+for i_output in final:
+    print(i_output)
+****************************************
+import os
+import random
+
+def search_file(cur_path, file_name, list_file=None):
+
+    if list_file is None:
+        list_file = list()
+
+    for i_elem in os.listdir(cur_path):
+        path = os.path.join(cur_path, i_elem)
+        if i_elem == file_name:
+            list_file.append(path)
+        if os.path.isdir(path):
+            search_file(path, file_name, list_file)
+    return list_file
+
+
+file = "securiti.txt"
+
+path_name = "R:\homeFinal"
+
+final = search_file(path_name, file)
+
+number = random.randrange(0, len(final))
+
+file_two = open(final[number], "r", encoding="utf-8")
+
+for i_output in final:
+    print(i_output)
+
+print(f"Cдержимое файла №{number} {file_two.read()}")
+
+file_two.close()
+****************************************
+file = open("numbers.txt", "r", encoding="utf-8")
+
+summation = 0
+
+for i_elem in file:
+    summation += int(i_elem)
+
+file.close()
+
+file = open("answer.txt", "w", encoding="utf-8")
+
+file.write(str(summation))
+****************************************
+import os
+
+file = open("R:\homeFinal\pythonProject\module22\group_1.txt", 'r', encoding='utf-8')
+
+list_name = []
+
+for i_elem in file:
+    print(i_elem, end="")
+    list_name.append(str(len(i_elem)))
+
+file.close()
+
+text = "\n".join(list_name)
+
+file_two = open("sym.count.txt", "w", encoding="utf-8")
+
+file_two.write(text)
+file_two.close()
+****************************************
+import os
+
+
+def search_file(cur_path, file_name):
+    print(f"Переходим в {cur_path}")
+    for i_elem in os.listdir(cur_path):
+        path = os.path.join(cur_path, i_elem)
+        print(f"    Смотрим {path}")
+        if i_elem == file_name:
+            return path
+        if os.path.isdir(path):
+            result = search_file(path, file_name)
+            if result:
+                break
+            else:
+                print(f"Переходим в {cur_path}")
+    else:
+        result = None
+    return result
+
+
+file = "test2.py"
+
+path_name = "R:\homeFinal"
+
+final = search_file(path_name, file)
+
+if final:
+    text = open('history_search_two.txt', "a", encoding='utf-8')
+    print("путь до файла {}".format({final}))
+    text.write("\n" + final)
+else:
+    print("файл не найден")
+****************************************
+file = open("numbers.txt", "r", encoding="utf-8")
+
+file.read()
+
+file.close()
+****************************************

@@ -17,7 +17,7 @@ def search_file(cur_path, file_name, list_file=None):
 
 file = "securiti.txt"
 
-path_name = "F:\PycharmProjects"
+path_name = "R:\homeFinal"
 
 final = search_file(path_name, file)
 
