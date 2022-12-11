@@ -9,7 +9,7 @@ class Potato:
         print("картошка {} сейчас {}".format(self.index, self.ripeness[self.height]))
 
     def rip(self):
-        if self.ripeness[self.height] != 3:
+        if self.ripeness[self.height] == "Зрелая":
             return True
         else:
             return False
@@ -37,8 +37,10 @@ class PotatoGarden:
     def all_rip(self):
         if all([i_potato.rip() for i_potato in self.potatos]):
             print("Вся картошка созрела. Можно собирать!")
+            return True
         else:
             print("Картошка ещё не созрела")
+            return False
 
     def grow_info(self):
         for i_potato in self.potatos:
