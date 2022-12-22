@@ -14,31 +14,31 @@ class Warriors:
     def info(self):
         print(self.health, end="HP\n")
 
+    def fight(self, war_two):
+        while True:
+            num = random.randint(1, 2)
+            if self.health != 0 and war_two.health != 0:
+                if num == 1:
+                    print(f"Атаковал юнит под номером {num}")
+                    war_two.health -= 20
+                    print("У воина №2 осталось - ", end="")
+                    war_two.info()
+                else:
+                    print(f"Атаковал юнит под номером {num}")
+                    self.health -= 20
+                    print("У воина №1 осталось - ", end="")
+                    self.info()
+            else:
+                if self.health == 0:
+                    print("Одержал победу №2")
+                    break
+                else:
+                    print("Одержал победу №1")
+                    break
+
 
 warrior_one = Warriors()
 warrior_two = Warriors()
 
+warrior_one.fight(warrior_two)
 
-def fight():
-    while True:
-        num = random.randint(1, 2)
-        if warrior_one.health != 0 and warrior_two != 0:
-            if num == 1:
-                print(f"Атаковал юнит под номером {num}")
-                warrior_two.health -= 20
-                print("У воина №2 осталось - ", end="")
-                warrior_two.info()
-            else:
-                print(f"Атаковал юнит под номером {num}")
-                warrior_one.health -= 20
-                print("У воина №1 осталось - ", end="")
-                warrior_one.info()
-        else:
-            if warrior_one.health == 0:
-                print("Одержал победу №2")
-                break
-            else:
-                print("Одержал победу №1")
-                break
-
-fight()
