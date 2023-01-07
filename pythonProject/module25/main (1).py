@@ -1,58 +1,61 @@
-# Даны два класса кораблей — грузовой и военный. У каждого из этих кораблей есть
-# своя модель, и каждый может сделать два действия: сообщить свою модель и идти по воде. 
+# Есть базовый класс «Юнит», который определяется количеством здоровья (хитпоинты).
+# У Юнита есть действие «получить урон» (базовый класс получает 0 урона).
 
-# Грузовой корабль имеет такой атрибут, как заполненность, изначально он равен нулю.
-# У него есть ещё два действия: погрузить и выгрузить груз с корабля. 
+# Также есть два дочерних класса:
 
-# У военного же корабля нет никаких грузов, есть только оружие, которое передаётся
-# вместе с моделью. Также, вместо погрузки и выгрузки, у него есть другое действие — атаковать.
+# Солдат: получает урон, равный переданному значению.
+# Обычный гражданин: получает урон, равный двукратному переданному значению. 
+# Реализуйте родительский и дочерние классы и их методы, используя принцип полиморфизма (а также инкапсуляции и наследования, конечно же).
 
-# Реализуйте классы грузового и военного кораблей. Для этого выделите общие атрибуты
-# и методы в отдельный класс «Корабль» и используйте наследование. Не забудьте про функцию super в дочерних классах.
-
-
-
-
-class Ship:
-    def __init__(self, model):
-        self.__model = model
-        
-    def __str__(self):
-        return 'model ship: {model}'.format(model=self.__model)
-        
-    def sail(self):
-        print("Ship ran ran ran")
-        
-
-class WarShip(Ship):
+class Unit:
     
-    def __init__(self, model, gun):
-        super().__init__(model)
-        self.gun = gun
+    def __init__(self):
+        self.point = 100
         
-    def attack(self):
-        print(f'warShip attak s pomoshiy {self.gun}')
+    def damage(self, damag):
+        self.point -= damag
+        print(f"Ваш юнит получил урон, у вас осталось{self.point}hp")
         
-
-war_ship = WarShip('zxc2', "GUNGUNGUN")
-
-war_ship.attack()
-
-class CargoShip(Ship):
+        
+class Soldat(Unit):
     
-    def __init__(self, model):
-        super().__init__(model)
-        self.gruz = 0
-        
-    def pogruzka(self):
-        self.gruz += 100
+    def __init__(self, name):
+        super().__init__()
+        self.__name = name
     
-    def vigruzka(self):
-        self.gruz -= 100
+    def get_name(self):
+        return self.__name
+
+    def set_name(self, name):
+        if name.isalpha():
+            self.__name = name
+        else:
+            print("pohol nahui")
+            
+            
+class Grazhdanin(Unit):
+    
+    def __init__(self, name):
+        super().__init__()
+        self.__name = name
         
+    def get_name(self):
+        return self.__name
+
+    def set_name(self, name):
         
-        
-cargo = CargoShip("cargo")
-        
-cargo.pogruzka()
-cargo.vigruzka
+        if name.isalpha():
+            self.__name = name
+        else:
+            print("pohol nahui")
+            
+    def damage(self, damags):
+        self.point -= damags 
+        print(f"Ваш юнит получил урон, у вас осталось {self.point}hp")
+
+            
+soldat = Soldat("Valera")
+man = Grazhdanin("Маша")
+
+soldat.damage(20)
+man.damage(10)

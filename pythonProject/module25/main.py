@@ -1,22 +1,59 @@
-class Person:
-    __count = 0
-    
-    def __init__(self, name, age):
-        self.__name = name
-        self.__age = age
-        Person.__count += 1
-        
-    def __str__(self):
-        return "Имя: {}\nAge: {}".format(self.__name, self.__age)
-        
-        
-    def set_age(self, age):
-        if age in range(1, 90):
-            self.__age = age
-        else:
-            raise Exception("Ne dopustimi voszrast")
+# На военную базу завезли несколько интересных моделей роботов,
+# которые похожи между собой, но имеют немного разные функции.
+# У каждого робота есть номер модели и действие operate, которое означает, что делает робот. Особенности роботов следующие:
 
-man = Person("Andrey", 10)
-man.set_age(15)
-print(Person._Person__count)
-print(man._Person__age)
+# У робота-пылесоса есть мешок для мусора, изначально он пустой (0).
+# При команде operate робот сообщает, что он пылесосит пол, и выводит текущую заполняемость мешка.
+
+# У военного робота есть оружие, и при команде operate он выводит сообщение о защите военного объекта с помощью этого оружия.
+# Ещё есть робот — подводная лодка, который также является военным.
+# У этого робота есть значение глубины, и при команде operate он делает то же, что и военный робот, плюс сообщает, что охрана ведётся под водой.
+
+# Напишите программу, которая реализует все необходимые классы роботов.
+
+
+
+class Robot():
+    
+    def __init__(self, num):
+        self.num = num
+    
+    def operate(self):
+        pass
+    
+    
+    def __str__(self):
+        return f"number - {num}"
+
+
+class RoboClean(Robot):
+    
+    def __init__(self, num):
+        super().__init__(num)
+        self.garbage = 0
+        
+    def operate(self):
+        print("Робот пылесосит")
+        self.garbage +=20
+        print(f'Мусор заполнен на {self.garbage}')
+        
+
+class WarRobot(Robot):
+    
+    def __init__(self, num, gun):
+        super().__init__(num)
+        self.gun = gun
+        
+    def operate(self):
+        print(f"Военный робот защитил базу с помощью {self.gun}")
+
+class WaterRobot(Robot):
+    
+    def __init__(self, num, gun):
+        super().__init__(num)
+        self.gun = gun
+        self.glubina = 100
+        
+    def operate(self):
+        print(f"Военный робот под водой защитил базу с помощью {self.gun}")
+        
